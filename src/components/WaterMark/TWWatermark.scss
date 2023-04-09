@@ -1,0 +1,11 @@
+.twwatermark {
+  position: absolute;
+  top: 0em;
+  left: 0px;
+  font-size: 8rem;
+  background: linear-gradient(to left, blue, green, yellow, orange, red);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+  transform: rotate(90deg) translateX(45%) translateY(107%);
+}
