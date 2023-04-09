@@ -1,0 +1,73 @@
+@import '../../sass/mixins.scss';
+
+.Home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  .input-group {
+    margin-top: 1rem;
+    z-index: 10;
+    position: relative;
+    width: 80%;
+    justify-content: center;
+    .ant-space-item {
+      .year-selector {
+        span {
+          background-color: white;
+          border: 0;
+        }
+        .ant-select-selection-item-remove {
+          display: none;
+        }
+      }
+      .year-selector::before {
+        content: '年份';
+        font-size: 0.6rem;
+        position: absolute;
+        z-index: 10;
+        background-color: white;
+        transform: translate(17px, -10px);
+        padding: 0 3px;
+      }
+      .city-selector {
+        width: 100%;
+      }
+      .city-selector::before {
+        content: '縣/市';
+        font-size: 0.6rem;
+        position: absolute;
+        z-index: 10;
+        background-color: white;
+        transform: translate(17px, -10px);
+        padding: 0 3px;
+      }
+      .district-selector {
+        width: 100%;
+      }
+      .district-selector::before {
+        content: '區';
+        font-size: 0.6rem;
+        position: absolute;
+        z-index: 10;
+        background-color: white;
+        transform: translate(17px, -10px);
+        padding: 0 3px;
+      }
+
+      @include sm {
+        &:not(:first-of-type) {
+          width: 100%;
+        }
+        .ant-btn {
+          width: 100%;
+        }
+      }
+    }
+
+    @include sm {
+      flex-direction: column;
+      align-items: start;
+    }
+  }
+}
