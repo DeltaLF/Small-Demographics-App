@@ -1,11 +1,13 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import './Navbar.scss';
 
 function NavbarComponent() {
   return (
     <div className="navbar">
-      <div className="logo">LOGO</div>
+      <Link to="/" className="logo">
+        LOGO
+      </Link>
       <div className="gear">gear icon</div>
     </div>
   );

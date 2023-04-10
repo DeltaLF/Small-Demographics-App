@@ -11,6 +11,14 @@
     position: relative;
     width: 80%;
     justify-content: center;
+    .ant-btn {
+      background-color: purple;
+      color: white;
+    }
+    .ant-btn:disabled {
+      background-color: #f5f5f5;
+      color: #858585;
+    }
     .ant-space-item {
       .year-selector {
         min-width: 4rem;

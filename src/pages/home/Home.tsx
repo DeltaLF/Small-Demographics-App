@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { Button, Layout, Select, Space } from 'antd';
 import './Home.scss';
 import { DISTRICTS_OPTIONS, CITY_OPTIONS } from '../../utils/city';
 
 function Home() {
-  const [year, setYear] = useState<string>('110');
-  const [city, setCity] = useState<string | undefined>();
+  const { year: urlYear, city: urlCity, district: urlDistrict } = useParams();
+  const [year, setYear] = useState<string | undefined>(urlYear);
+  const [city, setCity] = useState<string | undefined>(urlCity);
   const [districtsList, setDistrictsList] = useState<typeof CITY_OPTIONS>([]);
-  const [district, setDistrict] = useState<string | undefined>();
+  const [district, setDistrict] = useState<string | undefined>(urlDistrict);
   return (
     <Layout className="Home">
       <h1>人口數、戶數按戶別及性別統計</h1>
@@ -76,8 +78,13 @@ function Home() {
         >
           區
         </Select>
-
-        <Button disabled={!city || !district}>submit</Button>
+        {!city || !district ? (
+          <Button disabled>submit</Button>
+        ) : (
+          <Link to={`/${year}/${city}/${district}`}>
+            <Button color="red">submit</Button>
+          </Link>
+        )}
       </Space>
     </Layout>
   );
