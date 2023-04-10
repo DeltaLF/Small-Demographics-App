@@ -13,13 +13,7 @@
     justify-content: center;
     .ant-space-item {
       .year-selector {
-        span {
-          background-color: white;
-          border: 0;
-        }
-        .ant-select-selection-item-remove {
-          display: none;
-        }
+        min-width: 4rem;
       }
       .year-selector::before {
         content: '年份';
@@ -31,7 +25,7 @@
         padding: 0 3px;
       }
       .city-selector {
-        width: 100%;
+        min-width: 8rem;
       }
       .city-selector::before {
         content: '縣/市';
@@ -43,7 +37,7 @@
         padding: 0 3px;
       }
       .district-selector {
-        width: 100%;
+        min-width: 9rem;
       }
       .district-selector::before {
         content: '區';
@@ -56,11 +50,18 @@
       }
 
       @include sm {
+        margin-top: 5px;
         &:not(:first-of-type) {
           width: 100%;
         }
         .ant-btn {
           width: 100%;
+        }
+        .city-selector {
+          width: 100%;
+        }
+        .district-selector {
+          min-width: 100%;
         }
       }
     }
