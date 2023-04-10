@@ -1,10 +1,11 @@
 @import '../../sass/mixins.scss';
+@import '../../sass/base.scss';
 
 .Home {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  background-color: $color-white;
   .input-group {
     margin-top: 1rem;
     z-index: 10;
@@ -12,12 +13,12 @@
     width: 80%;
     justify-content: center;
     .ant-btn {
-      background-color: purple;
-      color: white;
+      background-color: $color-primary;
+      color: $color-white;
     }
     .ant-btn:disabled {
-      background-color: #f5f5f5;
-      color: #858585;
+      background-color: $color-white-secondary;
+      color: $color-white-tertiary;
     }
     .ant-space-item {
       .year-selector {
@@ -28,7 +29,7 @@
         font-size: 0.6rem;
         position: absolute;
         z-index: 10;
-        background-color: white;
+        background-color: $color-white;
         transform: translate(17px, -10px);
         padding: 0 3px;
       }
@@ -40,7 +41,7 @@
         font-size: 0.6rem;
         position: absolute;
         z-index: 10;
-        background-color: white;
+        background-color: $color-white;
         transform: translate(17px, -10px);
         padding: 0 3px;
       }
@@ -52,7 +53,7 @@
         font-size: 0.6rem;
         position: absolute;
         z-index: 10;
-        background-color: white;
+        background-color: $color-white;
         transform: translate(17px, -10px);
         padding: 0 3px;
       }
@@ -75,6 +76,7 @@
     }
 
     @include sm {
+      width: 90%;
       flex-direction: column;
       align-items: start;
     }

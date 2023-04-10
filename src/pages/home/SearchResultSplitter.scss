@@ -1,0 +1,25 @@
+@import '../../sass/base.scss';
+
+.searchResult {
+  width: 90%;
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::before,
+  &::after {
+    content: ' ';
+    width: 38%;
+    height: 1px;
+    display: inline-block;
+    background-color: $color-primary;
+  }
+  span {
+    border: 1.2px $color-primary solid;
+    border-radius: 35%;
+    padding: 7.5px 15px;
+    margin: 0 10px;
+    white-space: nowrap;
+    color: $color-primary;
+  }
+}

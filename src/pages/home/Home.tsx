@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Button, Layout, Select, Space } from 'antd';
 import './Home.scss';
 import { DISTRICTS_OPTIONS, CITY_OPTIONS } from '../../utils/city';
+import SearchResultSplitter from './SearchResultSplitter';
 
 function Home() {
   const { year: urlYear, city: urlCity, district: urlDistrict } = useParams();
@@ -86,6 +87,7 @@ function Home() {
           </Link>
         )}
       </Space>
+      <SearchResultSplitter />
     </Layout>
   );
 }
