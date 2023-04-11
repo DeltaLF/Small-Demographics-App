@@ -1,33 +1,28 @@
 @import '../../sass/mixins.scss';
 
 .Chart {
-  margin-top: 2rem;
-  width: 90%;
-  display: flex;
-  justify-content: center;
-  .bar-chart {
-    padding-top: 2rem;
-
-    .ant-alert {
-      padding: 2rem;
-    }
-
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    canvas {
-      margin: 2rem auto;
-      width: 100%;
-      height: 30rem;
-    }
-    width: 90%;
-    height: 30rem;
+  padding-top: 3rem;
+  h1 {
+    text-align: center;
   }
+  .chartGroup {
+    width: 90vw;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    .chartBox {
+      width: 60%;
+      min-height: 20rem;
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
 
-  @include sm {
-    width: 100%;
-    .bar-chart {
-      height: 25rem;
+      @include sm {
+        width: 90%;
+      }
     }
   }
 }

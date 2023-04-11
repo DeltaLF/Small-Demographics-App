@@ -22,13 +22,13 @@ function ChartComponent({
   const { year, city, district } = useParams();
   return (
     <div className="Chart">
-      <div className="bar-chart">
-        {isLoading && <Spin indicator={antIcon} />}
-        {!!errorMessage && <Alert message={errorMessage} type="error" />}
-        {!!household && !isLoading && !!year && !!city && !!district && (
-          <>
-            <h1>{`${year}年 ${city} ${district}`}</h1>
-            {/* transform props to immute value for React.memo */}
+      {isLoading && <Spin indicator={antIcon} />}
+      {!!errorMessage && <Alert message={errorMessage} type="error" />}
+      {!!household && !isLoading && !!year && !!city && !!district && (
+        <>
+          <h1>{`${year}年 ${city} ${district}`}</h1>
+          {/* transform props to immute value for React.memo */}
+          <div className="chartGroup">
             <ChartBar
               single_m={household.single_m}
               ordinary_m={household.ordinary_m}
@@ -41,9 +41,9 @@ function ChartComponent({
               single_f={household.single_f}
               ordinary_f={household.ordinary_f}
             />
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

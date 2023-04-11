@@ -20,6 +20,7 @@ function ChartPie({ single_m, ordinary_m, single_f, ordinary_f }: Household) {
     ],
   };
   const pieOptions = {
+    // responsive: false,
     maintainAspectRatio: false,
     layout: {
       padding: 20,
@@ -58,12 +59,14 @@ function ChartPie({ single_m, ordinary_m, single_f, ordinary_f }: Household) {
   };
 
   return (
-    <Pie
-      data={pieData}
-      options={pieOptions}
-      // @ts-ignore
-      plugins={[ChartDataLabels]}
-    />
+    <div className="chartBox">
+      <Pie
+        data={pieData}
+        options={pieOptions}
+        // @ts-ignore
+        plugins={[ChartDataLabels]}
+      />
+    </div>
   );
 }
 

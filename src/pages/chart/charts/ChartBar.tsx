@@ -46,6 +46,7 @@ function ChartBar({ single_m, ordinary_m, single_f, ordinary_f }: Household) {
   };
 
   const barOptions = {
+    // responsive: false,
     maintainAspectRatio: false,
     plugins: {
       title: {
@@ -99,11 +100,13 @@ function ChartBar({ single_m, ordinary_m, single_f, ordinary_f }: Household) {
   };
 
   return (
-    <Bar
-      data={barData}
-      options={barOptions}
-      plugins={[ChartDataLabels, yScaleText]}
-    />
+    <div className="chartBox">
+      <Bar
+        data={barData}
+        options={barOptions}
+        plugins={[ChartDataLabels, yScaleText]}
+      />
+    </div>
   );
 }
 
