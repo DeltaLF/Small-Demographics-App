@@ -6,4 +6,6 @@ export default {
   colorSecondary: '#4c84cf',
   colorSecondaryDark: '#39639C',
   colorSecondaryLight: '#8fb2e1',
+
+  colorDark: '#0',
 };

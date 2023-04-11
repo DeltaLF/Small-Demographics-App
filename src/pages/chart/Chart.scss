@@ -6,6 +6,15 @@
   display: flex;
   justify-content: center;
   .bar-chart {
+    padding-top: 2rem;
+
+    .ant-alert {
+      padding: 2rem;
+    }
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     canvas {
       margin: 2rem auto;
       width: 100%;

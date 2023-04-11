@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Button, Layout, Select, Space } from 'antd';
+import axios from 'axios';
 import './Home.scss';
 import { DISTRICTS_OPTIONS, CITY_OPTIONS } from '../../utils/city';
 import SearchResultSplitter from './SearchResultSplitter';
@@ -15,6 +16,8 @@ function Home() {
   const [districtsList, setDistrictsList] = useState<typeof CITY_OPTIONS>([]);
   const [district, setDistrict] = useState<string | undefined>(urlDistrict);
   const [household, setHouseHold] = useState<Household>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if (city && city in DISTRICTS_OPTIONS) {
@@ -26,6 +29,8 @@ function Home() {
 
   useEffect(() => {
     if (!!year && !!city && !!district && district === urlDistrict) {
+      setIsLoading(true);
+      setErrorMessage('');
       GovAxApi.getInstance()
         .getCitizenCountByDistrict(year, city, district)
         .then((response) => {
@@ -35,6 +40,11 @@ function Home() {
           female: single, oridnary
           */
           const data = response.data.responseData;
+          if (!data) {
+            setHouseHold(undefined);
+            setErrorMessage(response.data.responseMessage);
+            return;
+          }
           const updateHouseHold: Household = {
             single_m: 0,
             ordinary_m: 0,
@@ -61,8 +71,16 @@ function Home() {
           });
           setHouseHold(updateHouseHold);
         })
-        .catch((e) => {
-          console.log(e);
+        .catch((error) => {
+          setHouseHold(undefined);
+          if (axios.isAxiosError(error)) {
+            setErrorMessage(error.message);
+          } else {
+            setErrorMessage('Something went wrong');
+          }
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
     }
   }, [urlDistrict]);
@@ -143,7 +161,11 @@ function Home() {
         )}
       </Space>
       <SearchResultSplitter />
-      <Chart household={household} />
+      <Chart
+        errorMessage={errorMessage}
+        household={household}
+        isLoading={isLoading}
+      />
     </Layout>
   );
 }
