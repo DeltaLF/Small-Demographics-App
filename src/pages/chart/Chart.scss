@@ -1,0 +1,24 @@
+@import '../../sass/mixins.scss';
+
+.Chart {
+  margin-top: 2rem;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  .bar-chart {
+    canvas {
+      margin: 2rem auto;
+      width: 100%;
+      height: 30rem;
+    }
+    width: 90%;
+    height: 30rem;
+  }
+
+  @include sm {
+    width: 100%;
+    .bar-chart {
+      height: 25rem;
+    }
+  }
+}

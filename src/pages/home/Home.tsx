@@ -5,6 +5,8 @@ import './Home.scss';
 import { DISTRICTS_OPTIONS, CITY_OPTIONS } from '../../utils/city';
 import SearchResultSplitter from './SearchResultSplitter';
 import GovAxApi from '../../axApis/gov';
+import Chart from '../chart/Chart';
+import { Household } from './Home.type';
 
 function Home() {
   const { year: urlYear, city: urlCity, district: urlDistrict } = useParams();
@@ -12,6 +14,7 @@ function Home() {
   const [city, setCity] = useState<string | undefined>(urlCity);
   const [districtsList, setDistrictsList] = useState<typeof CITY_OPTIONS>([]);
   const [district, setDistrict] = useState<string | undefined>(urlDistrict);
+  const [household, setHouseHold] = useState<Household>();
 
   useEffect(() => {
     if (city && city in DISTRICTS_OPTIONS) {
@@ -25,8 +28,38 @@ function Home() {
     if (!!year && !!city && !!district && district === urlDistrict) {
       GovAxApi.getInstance()
         .getCitizenCountByDistrict(year, city, district)
-        .then((e) => {
-          console.log(e);
+        .then((response) => {
+          /*
+          4 data needed
+          male: single, ordinary
+          female: single, oridnary
+          */
+          const data = response.data.responseData;
+          const updateHouseHold: Household = {
+            single_m: 0,
+            ordinary_m: 0,
+            single_f: 0,
+            ordinary_f: 0,
+          };
+          data.forEach((districtData) => {
+            updateHouseHold.ordinary_m += parseInt(
+              districtData.household_ordinary_m,
+              10
+            );
+            updateHouseHold.ordinary_f += parseInt(
+              districtData.household_ordinary_f,
+              10
+            );
+            updateHouseHold.single_m += parseInt(
+              districtData.household_single_m,
+              10
+            );
+            updateHouseHold.single_f += parseInt(
+              districtData.household_single_f,
+              10
+            );
+          });
+          setHouseHold(updateHouseHold);
         })
         .catch((e) => {
           console.log(e);
@@ -110,6 +143,7 @@ function Home() {
         )}
       </Space>
       <SearchResultSplitter />
+      <Chart household={household} />
     </Layout>
   );
 }
