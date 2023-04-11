@@ -5,7 +5,7 @@ import axios from 'axios';
 import './Home.scss';
 import { DISTRICTS_OPTIONS, CITY_OPTIONS } from '../../utils/city';
 import SearchResultSplitter from './SearchResultSplitter';
-import GovAxApi from '../../axApis/gov';
+import govAxApi from '../../axApis/gov';
 import Chart from '../chart/Chart';
 import { Household } from './Home.type';
 
@@ -31,7 +31,7 @@ function Home() {
     if (!!year && !!city && !!district && district === urlDistrict) {
       setIsLoading(true);
       setErrorMessage('');
-      GovAxApi.getInstance()
+      govAxApi
         .getCitizenCountByDistrict(year, city, district)
         .then((response) => {
           /*

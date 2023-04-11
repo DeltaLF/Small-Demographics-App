@@ -10,20 +10,10 @@ const config: AxiosRequestConfig = {
 };
 
 class GovAxApi {
-  private static instance: GovAxApi;
-
-  private static axios: AxiosInstance = axios.create(config);
-
-  public static getInstance(): GovAxApi {
-    if (!GovAxApi.instance) {
-      GovAxApi.instance = new GovAxApi();
-    }
-    return GovAxApi.instance;
-  }
+  private axios: AxiosInstance = axios.create(config);
 
   getCitizenCountByDistrict(year: string, city: string, district: string) {
-    console.debug(this);
-    return GovAxApi.axios.get<CitizenCountByDistrict>(`ODRP019/${year}`, {
+    return this.axios.get<CitizenCountByDistrict>(`ODRP019/${year}`, {
       params: {
         COUNTY: encodeURIComponent(city),
         TOWN: encodeURIComponent(district),
@@ -32,4 +22,5 @@ class GovAxApi {
   }
 }
 
-export default GovAxApi;
+const govAxApi = new GovAxApi();
+export default govAxApi;
